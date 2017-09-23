@@ -17,7 +17,7 @@ sudo pip3 install flask py-trello slacker
 ### generate config file
 Make `settings.cfg` file.
 
-** settings.cfg **
+**settings.cfg**
 ```
 [Flask]
 my_url  =　# Your server url
