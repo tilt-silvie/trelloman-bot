@@ -21,6 +21,7 @@ Make `settings.cfg` file.
 ```
 [Flask]
 my_url  =　# Your server url
+port    = # Your server port number
 
 [Trello]
 api_key     = # Trello API Key
@@ -33,6 +34,7 @@ done_list_name      = # Done list name
 
 [Slack]
 token   = # Slack API Token
+channel = # Channel name to post
 
 ```
 

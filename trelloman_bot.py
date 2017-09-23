@@ -20,12 +20,17 @@ def webhook():
             message = None
 
             if before_list == todo_list_name and after_list == doing_list_name:
+                # You can modify post message
+                # TODO : message format can be defined in config file
                 message = user_name + "さんが「" + card_name + "」に取りかかりました。ファイト！"
+
             elif before_list == doing_list_name and after_list == done_list_name:
+                # You can modify post message
+                # TODO : message format can be defined in config file
                 message = user_name+ "さんが「" + card_name + "」を完了しました。お疲れ様です！"
 
             if message is not None:
-                slack.chat.post_message("sandbox", message, as_user=True)
+                slack.chat.post_message(channel_name, message, as_user=True)
 
         return '', 200
     else:
@@ -43,10 +48,13 @@ def webhook_registation():
 if __name__ == '__main__':
     settings = configparser.ConfigParser()
     settings.read(SETTING_FILE, encoding="utf-8")
+
+    port = settings.get("Flask", "port")
     slack_token = settings.get("Slack", "token")
+    channel_name = settings.get("Slack", "post_channel")
     todo_list_name = settings.get("Trello", "todo_list_name")
     doing_list_name = settings.get("Trello", "doing_list_name")
     done_list_name = settings.get("Trello", "done_list_name")
 
     slack = Slacker(slack_token)
-    app.run(port=5000, host="0.0.0.0")
+    app.run(port=int(port), host="0.0.0.0")
